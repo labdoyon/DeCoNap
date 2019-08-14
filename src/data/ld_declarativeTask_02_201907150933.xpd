@@ -1,0 +1,19 @@
+#Expyriment 0.8.0 (Python 2.7.12), .xpd-file, coding: cp1252
+#date: Mon Jul 15 2019 09:33:18
+#--EXPERIMENT INFO
+#e mainfile: ld_declarativeTask.py
+#e sha1: 6494d8
+#e modules: config.py (323a81), ld_card.py (3b2b49), ld_utils.py (a43107), ld_matrix.py (40c1cb)
+#e Subject: 
+#e 905
+#e Positions pictures:
+#e ['a002.png', 'f001.png', 'v007.png', 'f002.png', 'v009.png', 'c004.png', 'c005.png', 'v002.png', 'c003.png', 'a009.png', 'f003.png', 'a006.png', 'f005.png', 'a001.png', 'v004.png', 'f009.png', 'a007.png', 'c007.png', 'v005.png', 'c006.png', 'a005.png', 'c002.png', 'v001.png', 'f006.png', 'c008.png', 'a003.png', 'f008.png', 'v006.png', 'c001.png', 'v008.png', 'v003.png', 'f004.png', 'a008.png', 'c009.png', 'a004.png', 'f007.png']
+#e Experiment: DayOne-Learning
+#e no between subject factors
+#e ['StartExp: 10746']
+#e ['Block 0 - Presentation']
+#e [0, 11, 33, 24, 28, 7, 21, 4, 20, 25, 13, 34, 29, 27, 17, 6, 18, 19, 31, 16, 2, 26, 22, 5, 12, 35, 32, 23, 14, 10, 8, 30, 15, 3, 9, 1]
+#e ['StartPresentation_0_16848']
+#--SUBJECT INFO
+#s id: 2
+subject_id,Time,NBlock,Picture,Answers,RT

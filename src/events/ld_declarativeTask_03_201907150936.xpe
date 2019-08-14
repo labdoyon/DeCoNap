@@ -1,0 +1,138 @@
+#Expyriment 0.8.0 (Python 2.7.12), .xpe-file, coding: cp1252
+#date: Mon Jul 15 2019 09:36:20
+#sha1: e7b940
+#modules: config.py (323a81), ld_card.py (3b2b49), ld_utils.py (a43107), ld_matrix.py (40c1cb)
+#display: size=(1366, 768), window_mode=False, open_gl=2
+#os: ('Windows', 'labodoyon-PC', '7', '6.1.7601', 'AMD64', 'Intel64 Family 6 Model 37 Stepping 5, GenuineIntel')
+Time,Type,Event,Value,Detail,Detail2
+4581,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f007.png
+4586,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c005.png
+4593,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v009.png
+4598,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c002.png
+4605,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v006.png
+4612,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a007.png
+4620,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a008.png
+4625,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v003.png
+4630,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a004.png
+4637,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f008.png
+4644,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c004.png
+4655,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f009.png
+4663,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c007.png
+4667,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f003.png
+4671,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v001.png
+4678,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c008.png
+4688,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f005.png
+4692,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a003.png
+4697,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v002.png
+4702,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a005.png
+4710,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f006.png
+4718,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a001.png
+4722,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v004.png
+4728,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c001.png
+4732,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a002.png
+4738,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f004.png
+4745,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c009.png
+4753,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v008.png
+4761,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a006.png
+4768,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v007.png
+4772,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v005.png
+4777,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c003.png
+4782,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f002.png
+4792,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a009.png
+4799,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f001.png
+4806,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c006.png
+10867,design,log,
+#design: #exp: DayOne-Learning
+#design: #xpi: Subject: 
+#design: #xpi: 905
+#design: #xpi: Positions pictures:
+#design: #xpi: ['f007.png', 'c005.png', 'v009.png', 'c002.png', 'v006.png', 'a007.png', 'a008.png', 'v003.png', 'a004.png', 'f008.png', 'c004.png', 'f009.png', 'c007.png', 'f003.png', 'v001.png', 'c008.png', 'f005.png', 'a003.png', 'v002.png', 'a005.png', 'f006.png', 'a001.png', 'v004.png', 'c001.png', 'a002.png', 'f004.png', 'c009.png', 'v008.png', 'a006.png', 'v007.png', 'v005.png', 'c003.png', 'f002.png', 'a009.png', 'f001.png', 'c006.png']
+#design: #dvn: Time,NBlock,Picture,Answers,RT
+#design: block_cnt,block_id,trial_cnt,trial_id
+10867,design,logged,
+10867,Experiment,started
+10936,Stimulus,presented,72
+13506,Stimulus,presented,72
+16115,Stimulus,presented,72
+17418,Stimulus,presented,72
+19487,Stimulus,presented,72
+20067,Stimulus,presented,72
+22134,Stimulus,presented,72
+22969,Stimulus,presented,72
+25034,Stimulus,presented,72
+26467,Stimulus,presented,72
+28541,Stimulus,presented,72
+29379,Stimulus,presented,72
+31465,Stimulus,presented,72
+33004,Stimulus,presented,72
+35069,Stimulus,presented,72
+35913,Stimulus,presented,72
+37972,Stimulus,presented,72
+39283,Stimulus,presented,72
+41345,Stimulus,presented,72
+42744,Stimulus,presented,72
+44800,Stimulus,presented,72
+45530,Stimulus,presented,72
+47597,Stimulus,presented,72
+48944,Stimulus,presented,72
+50997,Stimulus,presented,72
+51942,Stimulus,presented,72
+54022,Stimulus,presented,72
+54887,Stimulus,presented,72
+56969,Stimulus,presented,72
+57995,Stimulus,presented,72
+60059,Stimulus,presented,72
+61137,Stimulus,presented,72
+63197,Stimulus,presented,72
+64185,Stimulus,presented,72
+66238,Stimulus,presented,72
+67467,Stimulus,presented,72
+69537,Stimulus,presented,72
+70310,Stimulus,presented,72
+72369,Stimulus,presented,72
+73221,Stimulus,presented,72
+75268,Stimulus,presented,72
+76630,Stimulus,presented,72
+78675,Stimulus,presented,72
+79495,Stimulus,presented,72
+81581,Stimulus,presented,72
+82179,Stimulus,presented,72
+84256,Stimulus,presented,72
+85717,Stimulus,presented,72
+87808,Stimulus,presented,72
+88620,Stimulus,presented,72
+90707,Stimulus,presented,72
+91725,Stimulus,presented,72
+93799,Stimulus,presented,72
+94832,Stimulus,presented,72
+96895,Stimulus,presented,72
+97599,Stimulus,presented,72
+99661,Stimulus,presented,72
+100406,Stimulus,presented,72
+102472,Stimulus,presented,72
+103347,Stimulus,presented,72
+105395,Stimulus,presented,72
+106418,Stimulus,presented,72
+108463,Stimulus,presented,72
+109015,Stimulus,presented,72
+111072,Stimulus,presented,72
+111638,Stimulus,presented,72
+113684,Stimulus,presented,72
+114759,Stimulus,presented,72
+116804,Stimulus,presented,72
+117353,Stimulus,presented,72
+119397,Stimulus,presented,72
+120478,Stimulus,presented,72
+122524,Stimulus,presented,72
+123654,Stimulus,presented,72
+125701,Stimulus,presented,72
+126589,Stimulus,presented,72
+129162,Stimulus,presented,72
+130598,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v001.png
+130646,Stimulus,presented,72
+132710,Stimulus,presented,72
+135124,Experiment,paused
+135129,Stimulus,presented,79
+136599,Keyboard,received,y,wait_char
+136599,Experiment,ended
+136690,Stimulus,presented,79

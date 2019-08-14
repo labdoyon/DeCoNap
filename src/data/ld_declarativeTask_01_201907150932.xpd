@@ -1,0 +1,16 @@
+#Expyriment 0.8.0 (Python 2.7.12), .xpd-file, coding: cp1252
+#date: Mon Jul 15 2019 09:32:26
+#--EXPERIMENT INFO
+#e mainfile: ld_declarativeTask.py
+#e sha1: 478113
+#e modules: config.py (323a81), ld_card.py (3b2b49), ld_utils.py (a43107), ld_matrix.py (40c1cb)
+#e Subject: 
+#e 905
+#e Positions pictures:
+#e ['c008.png', 'a002.png', 'f009.png', 'a009.png', 'f002.png', 'v002.png', 'v005.png', 'f008.png', 'v006.png', 'c007.png', 'a006.png', 'c003.png', 'a004.png', 'c001.png', 'f005.png', 'a007.png', 'c006.png', 'v009.png', 'f004.png', 'v004.png', 'c002.png', 'v001.png', 'f001.png', 'a005.png', 'v003.png', 'c004.png', 'a008.png', 'f006.png', 'v007.png', 'f007.png', 'f003.png', 'a001.png', 'c005.png', 'v008.png', 'c009.png', 'a003.png']
+#e Experiment: DayOne-Learning
+#e no between subject factors
+#e ['StartExp: 10855']
+#--SUBJECT INFO
+#s id: 1
+subject_id,Time,NBlock,Picture,Answers,RT

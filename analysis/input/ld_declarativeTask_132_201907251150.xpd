@@ -1,0 +1,167 @@
+#Expyriment 0.8.0 (Python 2.7.15), .xpd-file, coding: UTF-8
+#date: Thu Jul 25 2019 11:50:47
+#--EXPERIMENT INFO
+#e mainfile: ld_declarativeTask.py
+#e sha1: bc88d2
+#e modules: config.py (677a6e), ld_utils.py (8d9eb4)
+#e Subject: 
+#e bbb
+#e Positions pictures:
+#e ['b007.png', 'c0011.png', 'c008.png', 'a007.png', 'b001.png', 'a0011.png', 'a005.png', 'b008.png', 'b006.png', 'a002.png', 'c007.png', 'c009.png', 'c001.png', 'b003.png', 'a001.png', 'c003.png', 'a004.png', 'b009.png', 'b004.png', 'a0012.png', 'c006.png', 'b0012.png', 'c002.png', 'a008.png', 'c0010.png', 'a006.png', 'c004.png', 'a0010.png', 'b005.png', 'c005.png', 'b002.png', 'c0012.png', 'b0010.png', 'a003.png', 'a009.png', 'b0011.png']
+#e Experiment: DayOne-TestLearning
+#e no between subject factors
+#e ['StartExp: 10291']
+#e ['StartTest_0_12909']
+#e ['Block 0 - Test']
+#e [11, 13, 0, 10, 34, 16, 22, 27, 26, 21, 8, 3, 2, 7, 18, 9, 6, 35, 29, 5, 30, 23, 1, 33, 25, 28, 20, 19, 17, 32, 14, 31, 15, 4, 12, 24]
+#e ['ShowCueCard_pos_11_card_c009.png_timing_16662']
+#e ['HideCueCard_pos_11_card_c009.png_timing_18681']
+#e ['Response_pos_33_card_a003.png_timing_19350']
+#e ['ShowCueCard_pos_13_card_b003.png_timing_21035']
+#e ['HideCueCard_pos_13_card_b003.png_timing_23052']
+#e ['Response_pos_24_card_c0010.png_timing_25421']
+#e ['ShowCueCard_pos_0_card_b007.png_timing_27004']
+#e ['HideCueCard_pos_0_card_b007.png_timing_29023']
+#e ['Response_pos_31_card_c0012.png_timing_29558']
+#e ['ShowCueCard_pos_10_card_c007.png_timing_30691']
+#e ['HideCueCard_pos_10_card_c007.png_timing_32709']
+#e ['Response_pos_14_card_a001.png_timing_33427']
+#e ['ShowCueCard_pos_34_card_a009.png_timing_34527']
+#e ['HideCueCard_pos_34_card_a009.png_timing_36546']
+#e ['Response_pos_27_card_a0010.png_timing_37414']
+#e ['ShowCueCard_pos_16_card_a004.png_timing_38781']
+#e ['HideCueCard_pos_16_card_a004.png_timing_40799']
+#e ['Response_pos_32_card_b0010.png_timing_41518']
+#e ['ShowCueCard_pos_22_card_c002.png_timing_43235']
+#e ['HideCueCard_pos_22_card_c002.png_timing_45253']
+#e ['Response_pos_17_card_b009.png_timing_46422']
+#e ['ShowCueCard_pos_27_card_a0010.png_timing_47672']
+#e ['HideCueCard_pos_27_card_a0010.png_timing_49690']
+#e ['Response_pos_7_card_b008.png_timing_50424']
+#e ['ShowCueCard_pos_26_card_c004.png_timing_52092']
+#e ['HideCueCard_pos_26_card_c004.png_timing_54110']
+#e ['Response_pos_19_card_a0012.png_timing_55779']
+#e ['ShowCueCard_pos_21_card_b0012.png_timing_57280']
+#e ['HideCueCard_pos_21_card_b0012.png_timing_59298']
+#e ['Response_pos_15_card_c003.png_timing_59883']
+#e ['ShowCueCard_pos_8_card_b006.png_timing_60951']
+#e ['HideCueCard_pos_8_card_b006.png_timing_62968']
+#e ['Response_pos_2_card_c008.png_timing_63785']
+#e ['ShowCueCard_pos_3_card_a007.png_timing_65286']
+#e ['HideCueCard_pos_3_card_a007.png_timing_67305']
+#e ['Response_pos_35_card_b0011.png_timing_69442']
+#e ['ShowCueCard_pos_2_card_c008.png_timing_70324']
+#e ['HideCueCard_pos_2_card_c008.png_timing_72342']
+#e ['Response_pos_17_card_b009.png_timing_74028']
+#e ['ShowCueCard_pos_7_card_b008.png_timing_74828']
+#e ['HideCueCard_pos_7_card_b008.png_timing_76846']
+#e ['Response_pos_27_card_a0010.png_timing_79683']
+#e ['ShowCueCard_pos_18_card_b004.png_timing_80736']
+#e ['HideCueCard_pos_18_card_b004.png_timing_82753']
+#e ['Response_pos_22_card_c002.png_timing_83469']
+#e ['ShowCueCard_pos_9_card_a002.png_timing_84919']
+#e ['HideCueCard_pos_9_card_a002.png_timing_86938']
+#e ['Response_pos_13_card_b003.png_timing_88656']
+#e ['ShowCueCard_pos_6_card_a005.png_timing_89673']
+#e ['HideCueCard_pos_6_card_a005.png_timing_91692']
+#e ['Response_pos_4_card_b001.png_timing_92709']
+#e ['ShowCueCard_pos_35_card_b0011.png_timing_93727']
+#e ['HideCueCard_pos_35_card_b0011.png_timing_95745']
+#e ['Response_pos_12_card_c001.png_timing_96663']
+#e ['ShowCueCard_pos_29_card_c005.png_timing_97730']
+#e ['HideCueCard_pos_29_card_c005.png_timing_99748']
+#e ['Response_pos_34_card_a009.png_timing_101752']
+#e ['ShowCueCard_pos_5_card_a0011.png_timing_102818']
+#e ['HideCueCard_pos_5_card_a0011.png_timing_104836']
+#e ['Response_pos_0_card_b007.png_timing_107772']
+#e ['ShowCueCard_pos_30_card_b002.png_timing_108956']
+#e ['HideCueCard_pos_30_card_b002.png_timing_110975']
+#e ['Response_pos_24_card_c0010.png_timing_112444']
+#e ['ShowCueCard_pos_23_card_a008.png_timing_114211']
+#e ['HideCueCard_pos_23_card_a008.png_timing_116229']
+#e ['Response_pos_17_card_b009.png_timing_118682']
+#e ['ShowCueCard_pos_1_card_c0011.png_timing_119448']
+#e ['HideCueCard_pos_1_card_c0011.png_timing_121467']
+#e ['Response_pos_11_card_c009.png_timing_124203']
+#e ['ShowCueCard_pos_33_card_a003.png_timing_125523']
+#e ['HideCueCard_pos_33_card_a003.png_timing_127540']
+#e ['Response_pos_None_ERROR_timing_128307']
+#e ['ShowCueCard_pos_25_card_a006.png_timing_129023']
+#e ['HideCueCard_pos_25_card_a006.png_timing_131041']
+#e ['Response_pos_21_card_b0012.png_timing_131960']
+#e ['ShowCueCard_pos_28_card_b005.png_timing_132913']
+#e ['HideCueCard_pos_28_card_b005.png_timing_134930']
+#e ['Response_pos_26_card_c004.png_timing_135496']
+#e ['ShowCueCard_pos_20_card_c006.png_timing_137180']
+#e ['HideCueCard_pos_20_card_c006.png_timing_139198']
+#e ['Response_pos_3_card_a007.png_timing_139982']
+#e ['ShowCueCard_pos_19_card_a0012.png_timing_141333']
+#e ['HideCueCard_pos_19_card_a0012.png_timing_143352']
+#e ['Response_pos_18_card_b004.png_timing_145304']
+#e ['ShowCueCard_pos_17_card_b009.png_timing_146574']
+#e ['HideCueCard_pos_17_card_b009.png_timing_148591']
+#e ['Response_pos_17_card_b009.png_timing_149691']
+#e ['ShowCueCard_pos_32_card_b0010.png_timing_151394']
+#e ['HideCueCard_pos_32_card_b0010.png_timing_153411']
+#e ['Response_pos_11_card_c009.png_timing_154011']
+#e ['ShowCueCard_pos_14_card_a001.png_timing_155597']
+#e ['HideCueCard_pos_14_card_a001.png_timing_157614']
+#e ['Response_pos_28_card_b005.png_timing_159700']
+#e ['ShowCueCard_pos_31_card_c0012.png_timing_161186']
+#e ['HideCueCard_pos_31_card_c0012.png_timing_163203']
+#e ['Response_pos_25_card_a006.png_timing_164037']
+#e ['ShowCueCard_pos_15_card_c003.png_timing_164903']
+#e ['HideCueCard_pos_15_card_c003.png_timing_166921']
+#e ['Response_pos_19_card_a0012.png_timing_168507']
+#e ['ShowCueCard_pos_4_card_b001.png_timing_169640']
+#e ['HideCueCard_pos_4_card_b001.png_timing_171659']
+#e ['Response_pos_20_card_c006.png_timing_172093']
+#e ['ShowCueCard_pos_12_card_c001.png_timing_173479']
+#e ['HideCueCard_pos_12_card_c001.png_timing_175496']
+#e ['Response_pos_5_card_a0011.png_timing_176463']
+#e ['ShowCueCard_pos_24_card_c0010.png_timing_178066']
+#e ['HideCueCard_pos_24_card_c0010.png_timing_180083']
+#e ['Response_pos_9_card_a002.png_timing_182752']
+#e ['StartShortRest_block_0_timing_184269']
+#e ['EndShortRest_block_0_timing_186769']
+#e ['StartRest_block_0_timing_186805']
+#e ['EndRest_block_0_timing_211805']
+#--SUBJECT INFO
+#s id: 132
+subject_id,Time,NBlock,Picture,Answers,RT
+132,19584,0,c009.png,a003.png,647
+132,25670,0,b003.png,c0010.png,2334
+132,29793,0,b007.png,c0012.png,515
+132,33663,0,c007.png,a001.png,693
+132,37649,0,a009.png,a0010.png,849
+132,41767,0,a004.png,b0010.png,692
+132,46671,0,c002.png,b009.png,1135
+132,50659,0,a0010.png,b008.png,714
+132,56029,0,c004.png,a0012.png,1638
+132,60132,0,b0012.png,c003.png,555
+132,64021,0,b006.png,c008.png,790
+132,69690,0,a007.png,b0011.png,2102
+132,74263,0,c008.png,b009.png,1665
+132,79918,0,b008.png,a0010.png,2817
+132,83704,0,b004.png,c002.png,697
+132,88892,0,a002.png,b003.png,1687
+132,92944,0,a005.png,b001.png,997
+132,96898,0,b0011.png,c001.png,888
+132,101987,0,c005.png,a009.png,1982
+132,108009,0,a0011.png,b007.png,2911
+132,112693,0,b002.png,c0010.png,1437
+132,118917,0,a008.png,b009.png,2431
+132,124438,0,c0011.png,c009.png,2706
+132,128307,0,a003.png,None,739
+132,132195,0,a006.png,b0012.png,892
+132,135745,0,b005.png,c004.png,542
+132,140218,0,c006.png,a007.png,760
+132,145540,0,a0012.png,b004.png,1927
+132,149941,0,b009.png,b009.png,1074
+132,154261,0,b0010.png,c009.png,566
+132,159949,0,a001.png,b005.png,2059
+132,164286,0,c0012.png,a006.png,808
+132,168743,0,c003.png,a0012.png,1561
+132,172343,0,b001.png,c006.png,400
+132,176698,0,c001.png,a0011.png,948
+132,182986,0,c0010.png,a002.png,2649

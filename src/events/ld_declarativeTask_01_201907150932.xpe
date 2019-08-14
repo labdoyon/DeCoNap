@@ -1,0 +1,57 @@
+#Expyriment 0.8.0 (Python 2.7.12), .xpe-file, coding: cp1252
+#date: Mon Jul 15 2019 09:32:26
+#sha1: 478113
+#modules: config.py (323a81), ld_card.py (3b2b49), ld_utils.py (a43107), ld_matrix.py (40c1cb)
+#display: size=(1366, 768), window_mode=False, open_gl=2
+#os: ('Windows', 'labodoyon-PC', '7', '6.1.7601', 'AMD64', 'Intel64 Family 6 Model 37 Stepping 5, GenuineIntel')
+Time,Type,Event,Value,Detail,Detail2
+4518,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c008.png
+4524,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a002.png
+4537,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f009.png
+4548,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a009.png
+4555,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f002.png
+4560,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v002.png
+4566,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v005.png
+4574,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f008.png
+4583,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v006.png
+4592,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c007.png
+4601,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a006.png
+4608,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c003.png
+4614,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a004.png
+4621,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c001.png
+4632,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f005.png
+4640,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a007.png
+4648,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c006.png
+4656,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v009.png
+4664,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f004.png
+4669,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v004.png
+4675,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c002.png
+4681,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v001.png
+4690,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f001.png
+4696,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a005.png
+4702,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v003.png
+4710,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c004.png
+4719,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a008.png
+4729,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f006.png
+4738,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v007.png
+4748,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f007.png
+4754,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\f003.png
+4763,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a001.png
+4770,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c005.png
+4778,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\v008.png
+4787,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\c009.png
+4793,Picture,loaded,C:\Users\labodoyon\Documents\projects\DeCoNapTaskTemporaryModification\src\stimulis\a003.png
+10855,design,log,
+#design: #exp: DayOne-Learning
+#design: #xpi: Subject: 
+#design: #xpi: 905
+#design: #xpi: Positions pictures:
+#design: #xpi: ['c008.png', 'a002.png', 'f009.png', 'a009.png', 'f002.png', 'v002.png', 'v005.png', 'f008.png', 'v006.png', 'c007.png', 'a006.png', 'c003.png', 'a004.png', 'c001.png', 'f005.png', 'a007.png', 'c006.png', 'v009.png', 'f004.png', 'v004.png', 'c002.png', 'v001.png', 'f001.png', 'a005.png', 'v003.png', 'c004.png', 'a008.png', 'f006.png', 'v007.png', 'f007.png', 'f003.png', 'a001.png', 'c005.png', 'v008.png', 'c009.png', 'a003.png']
+#design: #dvn: Time,NBlock,Picture,Answers,RT
+#design: block_cnt,block_id,trial_cnt,trial_id
+10855,design,logged,
+10855,Experiment,started
+10856,stderr,received,'Traceback (most recent call last):'
+10857,stderr,received,'  File "ld_declarativeTask.py", line 67, in <module>'
+10858,stderr,received,"    lji.run_stimulation({'channel': 7})"
+10858,stderr,received,"NameError: name 'lji' is not defined"
