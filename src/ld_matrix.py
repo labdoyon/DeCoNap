@@ -196,8 +196,6 @@ class LdMatrix(object):
             newMatrix[i] = tempListPictures[category][currentCategoryIndex[dummyMatrix[i]]]
             currentCategoryIndex[category] += 1
 
-        print newMatrix
-
         return newMatrix
 
     def associatePictures(self, newMatrix):
@@ -208,6 +206,9 @@ class LdMatrix(object):
                 self._matrix.item(nCard).stimuli[0].scale(self._matrix.item(nCard).size[0]/float(300))
                 self._listPictures.append(newMatrix[nPict])
                 nPict += 1
+            else:
+                self._listPictures.append(None)
+
 
     def associateSounds(self, newMatrix, soundsAllocation):
         nPict = 0

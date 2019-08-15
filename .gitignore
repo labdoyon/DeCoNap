@@ -90,6 +90,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# Generated data
+data/
+events/
+
 # Spyder project settings
 .spyderproject
 .spyproject

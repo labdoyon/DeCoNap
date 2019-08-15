@@ -83,14 +83,7 @@ for nCard in range(presentationOrder.shape[1]):
     if presentationOrder[1][nCard] == 0: # Learning Matrix
         listCards.append(learningMatrix[int(position)])
     else:
-        try:
-            listCards.append(randomMatrix[int(position)])
-        except:
-            print "HEY"
-            print listCards
-            print randomMatrix
-            print int(position)
-            sys.exit()
+        listCards.append(randomMatrix[int(position)])
 
 exp.add_experiment_info(presentationOrder)  # Add listPictures
 

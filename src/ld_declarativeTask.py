@@ -134,20 +134,21 @@ while currentCorrectAnswers < correctAnswersMax and nBlock < nbBlocksMax:
         # lji.run_stimulation({'channel': 7})
 
         for nCard in presentationOrder:
-            mouse.hide_cursor(True, True)
-            m.plotCard(nCard, True, bs, True)  # Show Location for ( 2s )
-            m.playSound(nCard)
-            # LOG and SYNC: Start Presentation
-            exp.add_experiment_info(['ShowCard_pos_{}_card_{}_timing_{}_sound_{}'.format(nCard, m.listPictures[nCard], exp.clock.time, sounds[m._matrix.item(nCard).sound])])  # Add sync info
-            # lji.run_stimulation({'channel': 7})
+            if nCard not in removeCards:
+                mouse.hide_cursor(True, True)
+                m.plotCard(nCard, True, bs, True)  # Show Location for ( 2s )
+                m.playSound(nCard)
+                # LOG and SYNC: Start Presentation
+                exp.add_experiment_info(['ShowCard_pos_{}_card_{}_timing_{}_sound_{}'.format(nCard, m.listPictures[nCard], exp.clock.time, sounds[m._matrix.item(nCard).sound])])  # Add sync info
+                # lji.run_stimulation({'channel': 7})
 
-            exp.clock.wait(presentationCard) ########################################################################### 2s
-            m.plotCard(nCard, False, bs, True)
-            exp.add_experiment_info(['HideCard_pos_{}_card_{}_timing_{}'.format(nCard, m.listPictures[nCard], exp.clock.time)])  # Add sync info
-            # lji.run_stimulation({'channel': 7})
+                exp.clock.wait(presentationCard) ########################################################################### 2s
+                m.plotCard(nCard, False, bs, True)
+                exp.add_experiment_info(['HideCard_pos_{}_card_{}_timing_{}'.format(nCard, m.listPictures[nCard], exp.clock.time)])  # Add sync info
+                # lji.run_stimulation({'channel': 7})
 
-            ISI = design.randomize.rand_int(min_max_ISI[0], min_max_ISI[1])
-            exp.clock.wait(ISI) ######################################################################################## random between 500 and 1500 ms
+                ISI = design.randomize.rand_int(min_max_ISI[0], min_max_ISI[1])
+                exp.clock.wait(ISI) ######################################################################################## random between 500 and 1500 ms
 
     instructions = stimuli.TextLine(' TEST ',
                                     position=(0, -windowSize[1]/float(2) + (2*m.gap + cardSize[1])/float(2)),
