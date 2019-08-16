@@ -49,5 +49,12 @@ class LdCard(object):
         if scale:
             self._stimuli[0].scale(self.size[0]/float(300))
 
+    def setNoPicture(self, scale=True):
+        self._stimuli = (stimuli.Picture(templatePicture, position=self.position),
+                         stimuli.Rectangle(self.size, colour=constants.C_WHITE, line_width=None,
+                                           position=self.position))
+        if scale:
+            self._stimuli[0].scale(self.size[0] / float(300))
+
     def setSound(self, number):
         self._sound = number

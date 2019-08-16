@@ -7,6 +7,7 @@ from ld_card import LdCard
 from config import cardSize, linesThickness, cueCardColor, matrixTemplate, listPictures, removeCards, dotColor, bgColor
 from config import picturesFolder, classPictures
 from config import soundsFolder, sounds
+from config import centralCard
 
 
 class LdMatrix(object):
@@ -124,7 +125,7 @@ class LdMatrix(object):
 
     def plotDefault(self, bs, draw=False):
         for nCard in range(self._matrix.size):
-            if nCard in removeCards:
+            if nCard in removeCards and nCard != centralCard:
                  self._matrix.item(nCard).color = bgColor
 
             bs = self.plotCard(nCard, False, bs)
@@ -208,7 +209,7 @@ class LdMatrix(object):
                 nPict += 1
             else:
                 self._listPictures.append(None)
-
+                self._matrix.item(nCard).setNoPicture()
 
     def associateSounds(self, newMatrix, soundsAllocation):
         nPict = 0

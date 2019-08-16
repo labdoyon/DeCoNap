@@ -150,6 +150,7 @@ while currentCorrectAnswers < correctAnswersMax and nBlock < nbBlocksMax:
                 ISI = design.randomize.rand_int(min_max_ISI[0], min_max_ISI[1])
                 exp.clock.wait(ISI) ######################################################################################## random between 500 and 1500 ms
 
+
     instructions = stimuli.TextLine(' TEST ',
                                     position=(0, -windowSize[1]/float(2) + (2*m.gap + cardSize[1])/float(2)),
                                     text_font=None, text_size=textSize, text_bold=None, text_italic=None,

@@ -137,6 +137,7 @@ elif matrixSize == (6,6):
                       0, 1, 0, 2, 2, 0]
 elif matrixSize == (7, 7):
     removeCards = [24]  # we remove the center of the matrix
+    centralCard = 24
     matrixTemplate = [0, 1, 1, 0, 2, 0, 2,
                       2, 0, 0, 1, 2, 1, 1,
                       1, 0, 2, 2, 1, 2, 0,
