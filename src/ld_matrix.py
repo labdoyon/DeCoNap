@@ -206,10 +206,10 @@ class LdMatrix(object):
                 self._matrix.item(nCard).setPicture(picturesFolder + newMatrix[nPict], False)
                 self._matrix.item(nCard).stimuli[0].scale(self._matrix.item(nCard).size[0]/float(300))
                 self._listPictures.append(newMatrix[nPict])
-                nPict += 1
             else:
                 self._listPictures.append(None)
                 self._matrix.item(nCard).setNoPicture()
+            nPict += 1
 
     def associateSounds(self, newMatrix, soundsAllocation):
         nPict = 0
@@ -220,7 +220,7 @@ class LdMatrix(object):
                 for i in range(3):  # WARNING: PARAMETER HARD CODED
                     if classPictures[i] in newMatrix[nPict]:
                         self._matrix.item(nCard).setSound(soundsAllocation[i])
-                nPict += 1
+            nPict += 1
 
     def checkPosition(self, position):
         for nCard in range(self._matrix.size):
