@@ -54,31 +54,32 @@ exp.add_experiment_info([soundsAllocation])
 exp.add_experiment_info(['Presentation Order: '])  # Save Presentation Order
 
 presentationMatrixLearningOrder = newRandomPresentation()
-presentationMatrixLearningOrder = np.vstack((presentationMatrixLearningOrder,np.zeros(m.size[0]*m.size[1]-len(removeCards))))
+presentationMatrixLearningOrder = np.vstack((presentationMatrixLearningOrder, np.zeros(m.size[0]*m.size[1]-len(removeCards))))
 
 presentationMatrixRandomOrder = newRandomPresentation(presentationMatrixLearningOrder)
-presentationMatrixRandomOrder = np.vstack((presentationMatrixRandomOrder,np.ones(m.size[0]*m.size[1]-len(removeCards))))
+presentationMatrixRandomOrder = np.vstack((presentationMatrixRandomOrder, np.ones(m.size[0]*m.size[1]-len(removeCards))))
 
 presentationOrder = np.hstack((presentationMatrixLearningOrder, presentationMatrixRandomOrder))
 
 presentationOrder = presentationOrder[:, np.random.permutation(presentationOrder.shape[1])]
 
 listCards = []
+
 for nCard in range(presentationOrder.shape[1]):
-    if removeCards:
-        removeCards.sort()
-        removeCards = np.asarray(removeCards)
-        tempPosition = presentationOrder[0][nCard]
-        index = 0
-        try:
-            index = int(np.where(removeCards == max(removeCards[removeCards<tempPosition]))[0]) + 1
-        except:
-            pass
+    #if removeCards:
+    #    removeCards.sort()
+    #    removeCards = np.asarray(removeCards)
+    #    tempPosition = presentationOrder[0][nCard]
+    #    index = 0
+    #    try:
+    #        index = int(np.where(removeCards == max(removeCards[removeCards<tempPosition]))[0]) + 1
+    #    except:
+    #        pass
 
-        position = tempPosition - index
+    #    position = tempPosition - index
 
-    else:
-        position = presentationOrder[0][nCard]
+    #else:
+    position = presentationOrder[0][nCard]
 
     if presentationOrder[1][nCard] == 0: # Learning Matrix
         listCards.append(learningMatrix[int(position)])
