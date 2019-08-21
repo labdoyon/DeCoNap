@@ -2,6 +2,7 @@ import numpy as np
 import os
 from expyriment.stimuli import Circle
 from playsound import playsound
+from math import floor
 
 from ld_card import LdCard
 from config import cardSize, linesThickness, cueCardColor, matrixTemplate, listPictures, removeCards, dotColor, bgColor
@@ -176,15 +177,17 @@ class LdMatrix(object):
         # 0 = first category (often a images), 1 = second category (often b), etc.
         dummyMatrix = [None] * len(previousMatrix)
         for i in range(len(previousMatrix)):
-            for j in range(len(classPictures)):
-                if classPictures[j] in previousMatrix[i]:
-                    dummyMatrix[i] = j
+            if i not in removeCards:
+                for j in range(len(classPictures)):
+                    if classPictures[j] in previousMatrix[i]:
+                        dummyMatrix[i] = j
 
         # Shifting categories
         perm = np.random.permutation(3).tolist()  # WARNING: PARAMETER HARD CODED
         while any(perm[i] == range(3)[i] for i in range(3)):  # WARNING: PARAMETER HARD CODED
             perm = np.random.permutation(3).tolist()  # WARNING: PARAMETER HARD CODED
-        dummyMatrix = [perm[i] for i in dummyMatrix]
+        dummyMatrix = [perm[i] for i in dummyMatrix if i is not None]
+        dummyMatrix.insert(int(floor(len(previousMatrix) / 2)), None)
 
         # copying class Pictures to a different object
         tempListPictures = list(listPictures)
@@ -193,9 +196,12 @@ class LdMatrix(object):
         # Filling matrix with images
         newMatrix = [0] * len(previousMatrix)
         for i in range(len(previousMatrix)):
-            category = dummyMatrix[i]
-            newMatrix[i] = tempListPictures[category][currentCategoryIndex[dummyMatrix[i]]]
-            currentCategoryIndex[category] += 1
+            if i not in removeCards:
+                category = dummyMatrix[i]
+                newMatrix[i] = tempListPictures[category][currentCategoryIndex[dummyMatrix[i]]]
+                currentCategoryIndex[category] += 1
+            else:
+                newMatrix[i] = None
 
         return newMatrix
 
