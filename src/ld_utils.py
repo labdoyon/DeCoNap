@@ -115,12 +115,41 @@ def getPreviousMatrix(subjectName, daysBefore, experienceName):
             indexSubjectName = header.index('Subject:') + 1
             if subjectName in header[indexSubjectName]:
                 print 'File found: ' + dataFile
+                print agg[3]
+                print header
                 indexPositions = header.index('Positions pictures:') + 1
                 previousMatrix = ast.literal_eval(header[indexPositions].split('\n')[0].split('\n')[0])
                 return previousMatrix
 
     return False
 
+def getPreviousSoundsAllocation(subjectName, daysBefore, experienceName):
+    # Duplicate of get previous matrix but for sounds
+    currentDate = datetime.now()
+
+    dataFiles = [each for each in os.listdir(dataFolder) if each.endswith('.xpd')]
+
+    for dataFile in dataFiles:
+        agg = misc.data_preprocessing.read_datafile(dataFolder + dataFile, only_header_and_variable_names=True)
+
+        previousDate = parse(agg[2]['date'])
+
+        try:
+            agg[3].index(experienceName)
+        except (ValueError):
+            continue
+
+        if daysBefore == 0 or ((currentDate-previousDate).total_seconds() > 72000*daysBefore and (currentDate-previousDate).total_seconds() < 100800*daysBefore):
+            header = agg[3].split('\n#e ')
+
+            indexSubjectName = header.index('Subject:') + 1
+            if subjectName in header[indexSubjectName]:
+                print 'File found: ' + dataFile
+                indexPositions = header.index('Image classes to sounds:') + 1
+                previousMatrix = ast.literal_eval(header[indexPositions].split('\n')[0].split('\n')[0])
+                return previousMatrix
+
+    return False
 
 def subfinder(mylist, pattern):
     answers = []
@@ -178,6 +207,13 @@ def readMouse(startTime, button, duration=None):
 
             if iKeyboard.process_control_keys():
                 break
+
+def newSoundAllocation(numberCategories):
+    soundToCategories = np.random.permutation(numberCategories).tolist()  # Random permutation to assign sounds to categories
+    return soundToCategories
+    # The first element, soundToCategories[0], will be the sound number of the first image category, classPictures[0]
+    # In general, the i-th element, soundToCategories[i], will be the sound number of the i-th image category, classPictures[i]
+
     #
     # if nBlock < 0:  # if nBlock == 0:
     #

@@ -7,15 +7,17 @@ rawFolder = os.getcwd() + os.path.sep
 picturesFolder = rawFolder + 'stimulis' + os.path.sep
 picturesExamplesFolder = rawFolder + 'stimulisExample' + os.path.sep
 dataFolder = rawFolder + 'data' + os.path.sep
+soundsFolder = rawFolder + 'stimulis' + os.path.sep + 'sounds' + os.path.sep
 
 mouseButton = 1
 
 windowMode = False  # if False use FullScreen
 windowSize = (1024, 768)  # if windowMode is True then use windowSize
 
-picturesExamples = ['triangle.png','square.png', 'circle.png']
+picturesExamples = ['triangle.png', 'square.png', 'circle.png']
+sounds = ['shortest-1-100ms.wav', 'shortest-2-100ms.wav', 'shortest-3-100ms.wav']
 
-templatePicture=picturesFolder+'a001.png'
+templatePicture = picturesFolder+'a001.png'
 
 linesThickness = 0
 colorLine = (0, 0, 0)  # expyriment.misc.constants.C_BLACK
@@ -127,17 +129,23 @@ if matrixSize == (5,5):
     removeCards = [12]
 elif matrixSize == (6,6):
     removeCards = []
-    matrixTemplate = [1, 0, 2, 0, 2, 3, 3, 2, 3, 1, 0, 1, 0, 1, 2,
-                        0, 1, 3, 2, 3, 1, 3, 2, 0, 3, 1, 0, 2, 3, 2, 2, 0, 1, 3, 1, 0]
+    # matrixTemplate = [1, 0, 2, 0, 2, 3, 3, 2, 3, 1, 0, 1, 0, 1, 2,
+     #                    0, 1, 3, 2, 3, 1, 3, 2, 0, 3, 1, 0, 2, 3, 2, 2, 0, 1, 3, 1, 0]
+    matrixTemplate = [0, 1, 1, 2, 0, 2,
+                      2, 0, 0, 2, 1, 1,
+                      1, 0, 2, 1, 2, 0,
+                      0, 2, 1, 0, 1, 2,
+                      1, 2, 1, 2, 0, 1,
+                      0, 1, 0, 2, 2, 0]
 
 correctAnswersMax = int(ceil((matrixSize[0]*matrixSize[0] - len(removeCards))*7./10))
 
-classPictures = ['a','c','v','f']
+classPictures = ['a', 'b', 'c']
 
 listPictures = []
 for classPicture in classPictures:
     listPictures.append(glob.glob(picturesFolder + classPicture + '*'))
-
+print listPictures
 for NClass in range(len(classPictures)):
     listPictures[NClass] = [p.replace(picturesFolder, '') for p in listPictures[NClass]]
 

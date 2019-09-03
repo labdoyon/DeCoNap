@@ -22,19 +22,19 @@ dayOneExample = CommandItem(text='Example',
                             menu=menu,
                             should_exit=False)
 
-dayOneLearning = CommandItem(text="Matrix A",
+dayOneLearning = CommandItem(text="Learning Matrix A",
                              command=python + " src" + os.path.sep + "ld_declarativeTask.py ",
                              arguments="Day One - Learning, " + sys.argv[1],
                              menu=menu,
                              should_exit=False)
 
-dayOneTestMatrixA = CommandItem(text="Test Matrix A",
+dayOneTestMatrixA = CommandItem(text="Test Cued Recall Matrix A",
                                 command=python + " src" + os.path.sep + "ld_declarativeTask.py ",
                                 arguments="Day One - Test Learning, " + sys.argv[1],
                                 menu=menu,
                                 should_exit=False)
 
-dayOneConsolidationMatrixA = CommandItem(text="Consolidation Matrix A",
+dayOneConsolidationMatrixA = CommandItem(text="Retest Cued Recall Matrix A",
                                 command=python + " src" + os.path.sep + "ld_declarativeTask.py ",
                                 arguments="Day One - Test Consolidation, " + sys.argv[1],
                                 menu=menu,
@@ -45,7 +45,7 @@ dayOneConfig = CommandItem(text='Show config file',
                            menu=menu,
                            should_exit=False)
 						   
-dayOneRecognition = CommandItem(text="Recognition",
+dayOneRecognition = CommandItem(text="Recognition Matrix A",
                                   command=python + " src" + os.path.sep + "ld_recognition.py ",
                                   arguments="Day One - Recognition, " + sys.argv[1],
                                   menu=menu,

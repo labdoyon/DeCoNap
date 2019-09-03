@@ -5,10 +5,10 @@ from expyriment import control, stimuli, io, design, misc
 from expyriment.misc._timer import get_time
 
 from ld_matrix import LdMatrix
-from ld_utils import setCursor, getPreviousMatrix, newRandomPresentation, readMouse
+from ld_utils import setCursor, getPreviousMatrix, newRandomPresentation, readMouse, getPreviousSoundsAllocation
 from config import *
 
-import labjack_interface as lji
+# import labjack_interface as lji
 
 if not windowMode:  # Check WindowMode and Resolution
     control.defaults.window_mode = windowMode
@@ -36,13 +36,20 @@ exp.add_experiment_info(['Learning: '])  # Save Subject Code
 learningMatrix = getPreviousMatrix(subjectName, 0, 'DayOne-Learning')
 exp.add_experiment_info([learningMatrix])  # Add listPictures
 
-interferenceMatrix = getPreviousMatrix(subjectName, 0, 'DayTwo-Interference')
+# interferenceMatrix = getPreviousMatrix(subjectName, 0, 'DayTwo-Interference')
 
 exp.add_experiment_info(['RandomMatrix: '])  # Save Subject Code
-randomMatrix = m.findMatrix(learningMatrix)
-if np.any(randomMatrix == interferenceMatrix):
-    randomMatrix = m.findMatrix(learningMatrix)
+randomMatrix = m.newRecognitionMatrix(learningMatrix)
+
 exp.add_experiment_info([randomMatrix])  # Add listPictures
+
+exp.add_experiment_info(['Image classes order:'])
+exp.add_experiment_info([classPictures])
+exp.add_experiment_info(['Sounds order:'])
+exp.add_experiment_info([sounds])
+
+soundsAllocation = getPreviousSoundsAllocation(subjectName, 0, 'DayOne-Learning')
+exp.add_experiment_info([soundsAllocation])
 
 exp.add_experiment_info(['Presentation Order: '])  # Save Presentation Order
 
@@ -76,7 +83,14 @@ for nCard in range(presentationOrder.shape[1]):
     if presentationOrder[1][nCard] == 0: # Learning Matrix
         listCards.append(learningMatrix[int(position)])
     else:
-        listCards.append(randomMatrix[int(position)])
+        try:
+            listCards.append(randomMatrix[int(position)])
+        except:
+            print "HEY"
+            print listCards
+            print randomMatrix
+            print int(position)
+            sys.exit()
 
 exp.add_experiment_info(presentationOrder)  # Add listPictures
 
@@ -85,7 +99,7 @@ control.start(exp, auto_create_subject_id=True, skip_ready_screen=True)
 
 # LOG and SYNC
 exp.add_experiment_info(['StartExp: {}'.format(exp.clock.time)])  # Add sync info
-lji.run_stimulation({'channel': 7})
+# lji.run_stimulation({'channel': 7})
 
 mouse = io.Mouse()  # Create Mouse instance
 mouse.set_logging(True)  # Log mouse
@@ -137,16 +151,18 @@ for nCard in range(presentationOrder.shape[1]):
 
     m._matrix.item(locationCard).setPicture(picturesFolder + listCards[nCard])
     m.plotCard(locationCard, True, bs, True)
+    m.playSoundCueCard(listCards[nCard], soundsAllocation)
 
+    cueCardSound = m.getSoundCueCard(listCards[nCard], soundsAllocation)
     # LOG and SYNC: Show Card
-    exp.add_experiment_info(['ShowCard_pos_{}_card_{}_timing_{}'.format(locationCard, listCards[nCard], exp.clock.time)])  # Add sync info
-    lji.run_stimulation({'channel': 7})
+    exp.add_experiment_info(['ShowCard_pos_{}_card_{}_timing_{}_sound_{}'.format(locationCard, listCards[nCard], exp.clock.time, cueCardSound)])  # Add sync info
+    # lji.run_stimulation({'channel': 7})
 	
     exp.clock.wait(presentationCard)
     m.plotCard(locationCard, False, bs, True)
     # LOG and SYNC: Hide Card
     exp.add_experiment_info(['HideCard_pos_{}_card_{}_timing_{}'.format(locationCard, listCards[nCard], exp.clock.time)])  # Add sync info
-    lji.run_stimulation({'channel': 7})
+    # lji.run_stimulation({'channel': 7})
 	
     mouse.show_cursor(True, True)
 
@@ -180,7 +196,7 @@ for nCard in range(presentationOrder.shape[1]):
 			
             # LOG and SYNC: response matrixA
             exp.add_experiment_info(['Response_{}_timing_{}'.format('MatrixA', exp.clock.time)])  # Add sync info
-            lji.run_stimulation({'channel': 7})
+            # lji.run_stimulation({'channel': 7})
 			
             #print presentationOrder[1][nCard] == 0
 
@@ -208,7 +224,7 @@ for nCard in range(presentationOrder.shape[1]):
 			
             # LOG and SYNC: response matrixA
             exp.add_experiment_info(['Response_{}_timing_{}'.format('None', exp.clock.time)])  # Add sync info
-            lji.run_stimulation({'channel': 7})
+            # lji.run_stimulation({'channel': 7})
         else:
             exp.data.add([exp.clock.time, showMatrix, False, rt])
 			
@@ -216,7 +232,7 @@ for nCard in range(presentationOrder.shape[1]):
         exp.data.add([exp.clock.time, showMatrix, False, rt])
         # LOG and SYNC: response matrixA
         exp.add_experiment_info(['Response_{}_timing_{}'.format('NoRT', exp.clock.time)])  # Add sync info
-        lji.run_stimulation({'channel': 7})
+        # lji.run_stimulation({'channel': 7})
 
     ISI = design.randomize.rand_int(min_max_ISI[0], min_max_ISI[1])
     exp.clock.wait(ISI)
