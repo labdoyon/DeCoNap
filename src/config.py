@@ -2,6 +2,8 @@ import glob
 import os
 from math import ceil
 
+noLabjack = True
+
 rawFolder = os.getcwd() + os.path.sep
 
 picturesFolder = rawFolder + 'stimulis' + os.path.sep
