@@ -22,10 +22,16 @@ class WrongCards(object):
         self.picture = []
 
 
-class day(object):
+class Day(object):
     def __init__(self):
         self.matrix = []
         self.header = []
+        self.matrix_pictures = []
+        self.number_blocks = 0
+        self.cards_order = []
+        self.cards_distance_to_correct_card = []
+        self.matrix_size = ()
+        self.events = []
 
 
 def extract_matrix_and_data(i_folder, i_file):
@@ -85,14 +91,32 @@ def extract_events(events, matrix_size):
     return cards_order, cards_distance_to_correct_card, block_number+1
 
 
-def write_csv(output_file_learning, matrix_pictures, cards_order, cards_distance_to_correct_card, number_blocks):
-    i_csv = csv.writer(open(output_file_learning, "wb"))
+def write_csv(output_file, matrix_pictures,
+              days=[], number_blocks=0, cards_order=[], cards_distance_to_correct_card=[]):
+
+    i_csv = csv.writer(open(output_file, "wb"))
+
     first_row = ['Item', 'Class']
-    for i in range(number_blocks):
-        first_row.extend(
-            ['Day1_Block' + str(i) + '_matrixA_order', 'Day1_Block' + str(i) + '_matrixA_distanceToMatrixA'])
+    if not days:
+        for i in range(number_blocks):
+            first_row.extend(
+                ['Day1_Block' + str(i) + '_matrixA_order', 'Day1_Block' + str(i) + '_matrixA_distanceToMatrixA'])
+    else:
+        first_row.extend(['Day1_matrixA_order', 'Day1_matrixA_distanceToMatrixA',
+                          'Day2_matrixA_order', 'Day2_matrixA_distanceToMatrixA',
+                          'DayRec_matrixA_order', 'DayRec_MatrixA_answer',
+                          'DayRec_matrixRec_order', 'DayRec_matrixRec_answer',
+                          'D3RecMR_distanceToMatrixA'])
+
     i_csv.writerow(first_row)
 
+    if not days:
+        write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_correct_card, number_blocks)
+    else:
+        write_csv_learning_test(i_csv, matrix_pictures, days)
+
+
+def write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_correct_card, number_blocks):
     for card in np.sort(matrix_pictures):
         # Add item; Add category
         card = card.rstrip('.png')
@@ -100,6 +124,19 @@ def write_csv(output_file_learning, matrix_pictures, cards_order, cards_distance
         for block_number in range(number_blocks):
             try:
                 item_list.extend([cards_order[block_number][card], cards_distance_to_correct_card[block_number][card]])
+            except KeyError:
+                item_list.extend(['NaN', 'NaN'])
+        i_csv.writerow(item_list)
+
+
+def write_csv_learning_test(i_csv, matrix_pictures, days):
+    for card in np.sort(matrix_pictures):
+        # Add item; Add category
+        card = card.rstrip('.png')
+        item_list = [card, card[0]]
+        for day in days:
+            try:
+                item_list.extend([day.cards_order[0][card], day.cards_distance_to_correct_card[0][card]])
             except KeyError:
                 item_list.extend(['NaN', 'NaN'])
         i_csv.writerow(item_list)
