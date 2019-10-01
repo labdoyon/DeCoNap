@@ -7,6 +7,7 @@ from scipy.spatial import distance
 
 from expyriment.misc import data_preprocessing
 
+dont_suppress_card_double_checking = True
 
 class CorrectCards(object):
     def __init__(self):
@@ -23,15 +24,23 @@ class WrongCards(object):
 
 
 class Day(object):
-    def __init__(self):
+    def __init__(self, recognition=False):
         self.matrix = []
         self.header = []
         self.matrix_pictures = []
         self.number_blocks = 0
-        self.cards_order = []
-        self.cards_distance_to_correct_card = []
         self.matrix_size = ()
         self.events = []
+
+        self.cards_order = []
+        if not recognition:
+            self.recognition = False
+            self.cards_distance_to_correct_card = []
+        else:
+            self.recognition = True
+            self.cards_answer = {}
+            self.recognition_cards_order = {}
+            self.recognition_answer = {}
 
 
 def extract_matrix_and_data(i_folder, i_file, recognition=False):
@@ -44,26 +53,27 @@ def extract_matrix_and_data(i_folder, i_file, recognition=False):
         recognition_matrix = False
     else:
         matrix_position = 'Learning:'
-        recognition_matrix = matrix_pictures = ast.literal_eval(
+        recognition_matrix = ast.literal_eval(
             header2[header2.index('RandomMatrix:') + 1].split('\n')[0].split('\n')[0])
+        recognition_matrix = [element.rstrip('.png') if element is not None else None for element in recognition_matrix]
         cards_order = header2[header2.index('Presentation Order:') + 1:header2.index('Experiment: DayOne-Recognition')]
         cards_order = ''.join(cards_order)
         non_decimal = re.compile(r'[^\d.]+')
         cards_order = non_decimal.sub('', cards_order)
         cards_order = cards_order.split('.')
         cards_order = [int(x) for x in cards_order[0:-1]]
-        matrix_a_or_rec = cards_order[len(cards_order)/2:]
+        matrix_rec_or_a = cards_order[len(cards_order)/2:]
         presentation_order = cards_order[:len(cards_order)/2]
 
     matrix_pictures = ast.literal_eval(
         header2[header2.index(matrix_position) + 1].split('\n')[0].split('\n')[0])
-    matrix_pictures = [element for element in matrix_pictures if element is not None]
+    matrix_pictures = [element.rstrip('.png') if element is not None else None for element in matrix_pictures]
 
     # Extracting data
     events = header[-1].split('\n')
     events = [element.encode('ascii') for element in events]
 
-    if len(matrix_pictures) == 48:
+    if len(matrix_pictures) == 49:
         matrix_size = (7, 7)
     elif len(matrix_pictures) == 36:
         matrix_size = (6, 6)
@@ -73,7 +83,7 @@ def extract_matrix_and_data(i_folder, i_file, recognition=False):
         raise ValueError('Matrix dimensions cannot be identified')
 
     if recognition:
-        return events, matrix_pictures, matrix_size, recognition_matrix
+        return events, matrix_pictures, matrix_size, recognition_matrix, matrix_rec_or_a, presentation_order
     else:
         return events, matrix_pictures, matrix_size
 
@@ -111,38 +121,66 @@ def extract_events(events, matrix_size):
     return cards_order, cards_distance_to_correct_card, block_number+1
 
 
-def recognition_extract_events(events, matrix_size):
+def recognition_extract_events(events, matrix_pictures, recognition_matrix, matrix_rec_or_a, presentation_order):
+    experiment_started = 0
+    counter = 0
+    # matrix_pictures = [card.rstrip('.png') for card in matrix_pictures if card is not None]
+    # recognition_matrix = [card.rstrip('.png') for card in recognition_matrix if card is not None]
+    cards = np.sort(matrix_pictures)
 
-    cards_position = []
-    cards_distance_to_correct_card = []
-    cards_order = []
+    # Assigning cards_order
+    cards_order = [presentation_order[i] for i in range(len(presentation_order)) if matrix_rec_or_a[i]]
+    cards_order = {cards[i]: cards_order[i] for i in range(len(cards_order))}
+    # Assigning recognition_cards_order
+    recognition_cards_order = [presentation_order[i] for i in range(len(presentation_order)) if not matrix_rec_or_a[i]]
+    recognition_cards_order = {cards[i]: recognition_cards_order[i] for i in range(len(recognition_cards_order))}
+
+    cards_answer = {}
+    recognition_answer = {}
     for event in events:
-        if 'Block' in event and 'Test' in event:
-            cards_position.append({})
-            cards_distance_to_correct_card.append({})
-            cards_order.append({})
-            block_number = len(cards_position) - 1
-            register_on = True
-            order = 0
-        elif 'Block' in event and 'Presentation' in event:
-            register_on = False
-        elif 'ShowCueCard' in event and register_on:
-            card = re.search('(?<=card_)\w+', event).group(0)
-            position = cards_position[block_number][card] = re.search('pos_([0-9]+)_', event).group(1)
-            cards_order[block_number][card] = order
-            order += 1
-            cards_distance_to_correct_card[block_number][card] = 'NaN'
-        elif 'Response' in event and 'NoResponse' not in event and 'pos_None_ERROR' not in event and register_on:
-            response = re.search('(?<=card_)\w+', event).group(0)
-            if response == card:
-                cards_distance_to_correct_card[block_number][card] = 0
-            else:
-                response_position = re.search('pos_([0-9]+)_', event).group(1)
-                cards_distance_to_correct_card[block_number][card] = distance.euclidean(
-                    np.unravel_index(int(position), matrix_size),
-                    np.unravel_index(int(response_position), matrix_size))
+        if experiment_started:
+            if 'ShowCard' in event:
+                card = re.search('(?<=card_)\w+', event).group(0)
+                card = card.rstrip('.png')
+                card_position = re.search('pos_([0-9]+)_', event).group(1)
+                expected_card = recognition_matrix[presentation_order[counter]] if matrix_rec_or_a[counter]\
+                    else matrix_pictures[presentation_order[counter]]
+                if card != expected_card:
+                    if matrix_rec_or_a[counter]:
+                        cards_answer[last_card] = 'NaN'
+                    else:
+                        recognition_answer[last_card] = 'NaN'
+                    counter += 1
+                last_card = card
+            if 'HideCard' in event:
+                hidden_card = re.search('(?<=card_)\w+', event).group(0)
+                hidden_card_position = re.search('pos_([0-9]+)_', event).group(1)
+                if dont_suppress_card_double_checking and\
+                        (hidden_card != card or hidden_card_position != card_position):
+                    raise Exception("""It seems a card was not hidden after being shown. Something may be wrong with
+                    the .xpd files you're using as input. You may skip this double-checking by changing
+                    `dont_suppress_card_double_checking` to `False` in ld_utils.py if you know what you're doing""")
+            if 'Response' in event:
+                # response = re.search('(?<=Response_)\w+', event).group(0)
+                response = re.search('Response_([a-zA-Z]+)_', event).group(1)
+                # matrix_rec_or_a[counter] == 1 means a recognition picture was shown
+                # matrix_rec_or_a[counter] == 0 means a matrixA picture was shown
+                if card == 'a001':
+                    print ""
+                if not matrix_rec_or_a[counter] and response == 'MatrixA':
+                    cards_answer[card] = 1
+                elif not matrix_rec_or_a[counter] and response == 'None':
+                    cards_answer[card] = 0
+                elif matrix_rec_or_a[counter] and response == 'None':
+                    recognition_answer[card] = 1
+                elif matrix_rec_or_a[counter] and response == 'MatrixA':
+                    recognition_answer[card] = 0
+                counter += 1
+        if 'StartExp' in event:
+            experiment_started = 1
 
-    return cards_order, cards_distance_to_correct_card, block_number + 1
+    return cards_order, cards_answer, recognition_cards_order, recognition_answer
+
 
 def write_csv(output_file, matrix_pictures,
               days=[], number_blocks=0, cards_order=[], cards_distance_to_correct_card=[]):
@@ -166,14 +204,16 @@ def write_csv(output_file, matrix_pictures,
     if not days:
         write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_correct_card, number_blocks)
     else:
-        write_csv_learning_test(i_csv, matrix_pictures, days)
+        write_csv_test(i_csv, matrix_pictures, days)
 
 
 def write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_correct_card, number_blocks):
-    for card in np.sort(matrix_pictures):
+    cards = [card for card in np.sort(matrix_pictures) if card is not None]
+    for card in cards:
         # Add item; Add category
         card = card.rstrip('.png')
         item_list = [card, card[0]]
+        # add answers and card orders
         for block_number in range(number_blocks):
             try:
                 item_list.extend([cards_order[block_number][card], cards_distance_to_correct_card[block_number][card]])
@@ -182,16 +222,24 @@ def write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_co
         i_csv.writerow(item_list)
 
 
-def write_csv_learning_test(i_csv, matrix_pictures, days):
-    for card in np.sort(matrix_pictures):
+def write_csv_test(i_csv, matrix_pictures, days):
+    cards = [card for card in np.sort(matrix_pictures) if card is not None]
+    for card in cards:
         # Add item; Add category
         card = card.rstrip('.png')
         item_list = [card, card[0]]
         for day in days:
             try:
-                item_list.extend([day.cards_order[0][card], day.cards_distance_to_correct_card[0][card]])
+                if not day.recognition:
+                    item_list.extend([day.cards_order[0][card], day.cards_distance_to_correct_card[0][card]])
+                else:
+                    item_list.extend([day.cards_order[card], day.cards_answer[card],
+                                     day.recognition_cards_order[card], day.recognition_answer[card]])
             except KeyError:
-                item_list.extend(['NaN', 'NaN'])
+                if not day.recognition:
+                    item_list.extend(['NaN', 'NaN'])
+                else:
+                    item_list.extend(['NaN', 'NaN', 'NaN', 'NaN'])
         i_csv.writerow(item_list)
 
 

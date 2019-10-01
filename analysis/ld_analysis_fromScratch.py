@@ -1,11 +1,9 @@
 import os
-import csv
 import sys
 
 from expyriment.misc import data_preprocessing
 
-# from config import matrix_size
-from ld_utils_fromScratch import Day, extract_matrix_and_data, extract_events, write_csv
+from ld_utils_fromScratch import Day, extract_matrix_and_data, extract_events, recognition_extract_events, write_csv
 
 # ***INSTRUCTIONS***
 # Please input the location of the subject folder containing the data you wish to convert to .csv format
@@ -39,7 +37,7 @@ for iFile in allFiles:
 day1_learning = Day()
 day2_test = Day()
 day3_test = Day()
-day3_recognition = Day()
+day3_recognition = Day(recognition=True)
 
 for iFile in allFiles:
     header = data_preprocessing.read_datafile(subject_folder + iFile, only_header_and_variable_names=True)
@@ -68,13 +66,16 @@ for iFile in allFiles:
                 extract_events(day3_test.events, day3_test.matrix_size)
             break
         if "DayOne-Recognition" in field and "Experiment" in field:
-            day3_recognition.events, day3_recognition.matrix_pictures, day3_recognition.matrix_size, recognition_matrix\
+            day3_recognition.events, day3_recognition.matrix_pictures, day3_recognition.matrix_size,\
+                recognition_matrix, matrix_a_or_rec, presentation_order\
                 = extract_matrix_and_data(subject_folder, iFile, recognition=True)
-            day3_recognition.cards_order, day3_recognition.cards_distance_to_correct_card, day3_recognition.number_blocks = \
-                extract_events(day3_recognition.events, day3_recognition.matrix_size)
+            day3_recognition.cards_order, day3_recognition.cards_answer,\
+                day3_recognition.recognition_cards_order, day3_recognition.recognition_answer\
+                = recognition_extract_events(day3_recognition.events, day3_recognition.matrix_pictures,
+                                             recognition_matrix, matrix_a_or_rec, presentation_order)
             break
 
-write_csv(output_file_tests, matrix_pictures, days=[day2_test, day3_test])
+write_csv(output_file_tests, matrix_pictures, days=[day2_test, day3_test, day3_recognition])
 
 # as a rule of thumb, for 'DayRec_MatrixA_answer' and 'DayRec_matrixRec_answer', remember that
 # 0 means "the subject made a mistake"
