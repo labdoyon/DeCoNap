@@ -19,8 +19,7 @@ from ld_utils_fromScratch import Day, extract_matrix_and_data, extract_events, w
 sep = os.path.sep
 #
 # Declaring <subject_folder> and <outputFile> variables, which are self-explanatory
-# subject_location = sys.argv[1]
-subject_location = '../../DeCoNap-HBHL_DT48_v0.3/data/Latifa_early_data_reorganized/HBHL_Dec48_NO_004/'
+subject_location = sys.argv[1]
 if subject_location[-1] == sep:  # removing path separator if not present. e.g. <data/> to <data>
     subject_location = subject_location[:-1]
 subject_folder = os.getcwd() + sep + subject_location + sep
@@ -45,6 +44,7 @@ day3_recognition = Day()
 for iFile in allFiles:
     header = data_preprocessing.read_datafile(subject_folder + iFile, only_header_and_variable_names=True)
     header[3].split('\n#e ')
+
     for field in header:
         if "DayOne-Learning" in field and "Experiment" in field:
             events, matrix_pictures, matrix_size = extract_matrix_and_data(subject_folder, iFile)
@@ -55,20 +55,23 @@ for iFile in allFiles:
                       cards_order=day1_learning.cards_order,
                       cards_distance_to_correct_card=day1_learning.cards_distance_to_correct_card)
             break
-    for field in header:
         if "DayOne-TestLearning" in field and "Experiment" in field:
-            day2_test.events, day2_test.matrix_pictures, day2_test.matrix_size =\
+            day2_test.events, day2_test.matrix_pictures, day2_test.matrix_size, =\
                 extract_matrix_and_data(subject_folder, iFile)
             day2_test.cards_order, day2_test.cards_distance_to_correct_card, day2_test.number_blocks =\
                 extract_events(day2_test.events, day2_test.matrix_size)
             break
-    for field in header:
         if "DayOne-TestConsolidation" in field and "Experiment" in field:
             day3_test.events, day3_test.matrix_pictures, day3_test.matrix_size = \
                 extract_matrix_and_data(subject_folder, iFile)
             day3_test.cards_order, day3_test.cards_distance_to_correct_card, day3_test.number_blocks = \
                 extract_events(day3_test.events, day3_test.matrix_size)
-            print "hey"
+            break
+        if "DayOne-Recognition" in field and "Experiment" in field:
+            day3_recognition.events, day3_recognition.matrix_pictures, day3_recognition.matrix_size, recognition_matrix\
+                = extract_matrix_and_data(subject_folder, iFile, recognition=True)
+            day3_recognition.cards_order, day3_recognition.cards_distance_to_correct_card, day3_recognition.number_blocks = \
+                extract_events(day3_recognition.events, day3_recognition.matrix_size)
             break
 
 write_csv(output_file_tests, matrix_pictures, days=[day2_test, day3_test])

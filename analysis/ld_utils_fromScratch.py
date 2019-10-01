@@ -34,12 +34,29 @@ class Day(object):
         self.events = []
 
 
-def extract_matrix_and_data(i_folder, i_file):
+def extract_matrix_and_data(i_folder, i_file, recognition=False):
     header = data_preprocessing.read_datafile(i_folder + i_file, only_header_and_variable_names=True)
 
     # Extracting pictures' positions in the matrix
     header2 = header[3].split('\n#e ')
-    matrix_pictures = ast.literal_eval(header2[header2.index('Positions pictures:') + 1].split('\n')[0].split('\n')[0])
+    if not recognition:
+        matrix_position = 'Positions pictures:'
+        recognition_matrix = False
+    else:
+        matrix_position = 'Learning:'
+        recognition_matrix = matrix_pictures = ast.literal_eval(
+            header2[header2.index('RandomMatrix:') + 1].split('\n')[0].split('\n')[0])
+        cards_order = header2[header2.index('Presentation Order:') + 1:header2.index('Experiment: DayOne-Recognition')]
+        cards_order = ''.join(cards_order)
+        non_decimal = re.compile(r'[^\d.]+')
+        cards_order = non_decimal.sub('', cards_order)
+        cards_order = cards_order.split('.')
+        cards_order = [int(x) for x in cards_order[0:-1]]
+        matrix_a_or_rec = cards_order[len(cards_order)/2:]
+        presentation_order = cards_order[:len(cards_order)/2]
+
+    matrix_pictures = ast.literal_eval(
+        header2[header2.index(matrix_position) + 1].split('\n')[0].split('\n')[0])
     matrix_pictures = [element for element in matrix_pictures if element is not None]
 
     # Extracting data
@@ -55,7 +72,10 @@ def extract_matrix_and_data(i_folder, i_file):
     else:
         raise ValueError('Matrix dimensions cannot be identified')
 
-    return events, matrix_pictures, matrix_size
+    if recognition:
+        return events, matrix_pictures, matrix_size, recognition_matrix
+    else:
+        return events, matrix_pictures, matrix_size
 
 
 def extract_events(events, matrix_size):
@@ -90,6 +110,39 @@ def extract_events(events, matrix_size):
 
     return cards_order, cards_distance_to_correct_card, block_number+1
 
+
+def recognition_extract_events(events, matrix_size):
+
+    cards_position = []
+    cards_distance_to_correct_card = []
+    cards_order = []
+    for event in events:
+        if 'Block' in event and 'Test' in event:
+            cards_position.append({})
+            cards_distance_to_correct_card.append({})
+            cards_order.append({})
+            block_number = len(cards_position) - 1
+            register_on = True
+            order = 0
+        elif 'Block' in event and 'Presentation' in event:
+            register_on = False
+        elif 'ShowCueCard' in event and register_on:
+            card = re.search('(?<=card_)\w+', event).group(0)
+            position = cards_position[block_number][card] = re.search('pos_([0-9]+)_', event).group(1)
+            cards_order[block_number][card] = order
+            order += 1
+            cards_distance_to_correct_card[block_number][card] = 'NaN'
+        elif 'Response' in event and 'NoResponse' not in event and 'pos_None_ERROR' not in event and register_on:
+            response = re.search('(?<=card_)\w+', event).group(0)
+            if response == card:
+                cards_distance_to_correct_card[block_number][card] = 0
+            else:
+                response_position = re.search('pos_([0-9]+)_', event).group(1)
+                cards_distance_to_correct_card[block_number][card] = distance.euclidean(
+                    np.unravel_index(int(position), matrix_size),
+                    np.unravel_index(int(response_position), matrix_size))
+
+    return cards_order, cards_distance_to_correct_card, block_number + 1
 
 def write_csv(output_file, matrix_pictures,
               days=[], number_blocks=0, cards_order=[], cards_distance_to_correct_card=[]):
