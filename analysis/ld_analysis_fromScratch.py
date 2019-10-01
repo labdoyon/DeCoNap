@@ -70,9 +70,11 @@ for iFile in allFiles:
                 recognition_matrix, matrix_a_or_rec, presentation_order\
                 = extract_matrix_and_data(subject_folder, iFile, recognition=True)
             day3_recognition.cards_order, day3_recognition.cards_answer,\
-                day3_recognition.recognition_cards_order, day3_recognition.recognition_answer\
+                day3_recognition.recognition_cards_order, day3_recognition.recognition_answer,\
+                day3_recognition.cards_distance_to_correct_card\
                 = recognition_extract_events(day3_recognition.events, day3_recognition.matrix_pictures,
-                                             recognition_matrix, matrix_a_or_rec, presentation_order)
+                                             recognition_matrix, matrix_a_or_rec, presentation_order,
+                                             day3_recognition.matrix_size)
             break
 
 write_csv(output_file_tests, matrix_pictures, days=[day2_test, day3_test, day3_recognition])
