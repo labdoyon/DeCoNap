@@ -189,12 +189,9 @@ def recognition_extract_events(events, matrix_pictures, recognition_matrix, matr
             experiment_started = 1
 
     for card in cards_no_none:
-        try:
             recognition_distance_matrix_a[card] = distance.euclidean(
                 np.unravel_index(int(cards_position[card]), matrix_size),
                 np.unravel_index(int(recognition_cards_position[card]), matrix_size))
-        except:
-            print card
     return cards_order, cards_answer, recognition_cards_order, recognition_answer, recognition_distance_matrix_a
 
 
@@ -257,7 +254,7 @@ def write_csv_test(i_csv, matrix_pictures, days):
                     item_list.extend(['NaN', 'NaN'])
                 else:
                     item_list.extend(['NaN', 'NaN', 'NaN', 'NaN', 'NaN'])
-        print item_list
+
         i_csv.writerow(item_list)
 
 
