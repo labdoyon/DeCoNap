@@ -128,13 +128,20 @@ def recognition_extract_events(events, matrix_pictures, recognition_matrix, matr
     cards = np.sort(matrix_pictures)
     cards_no_none = list(cards[1:])
     recognition_distance_matrix_a = {}
+    recognition_cards_order = {}
+    cards_order = {}
+    for i in range(len(cards_no_none)*2):
+        if matrix_rec_or_a[i]:
+            recognition_cards_order[recognition_matrix[presentation_order[i]]] = i
+        else:
+            cards_order[matrix_pictures[presentation_order[i]]] = i
 
     # Assigning cards_order
-    cards_order = [presentation_order[i] for i in range(len(presentation_order)) if matrix_rec_or_a[i]]
-    cards_order = {cards_no_none[i]: cards_order[i] for i in range(len(cards_order))}
+    # cards_order = [presentation_order[i] for i in range(len(presentation_order)) if matrix_rec_or_a[i]]
+    # cards_order = {cards_no_none[i]: cards_order[i] for i in range(len(cards_order))}
     # Assigning recognition_cards_order
-    recognition_cards_order = [presentation_order[i] for i in range(len(presentation_order)) if not matrix_rec_or_a[i]]
-    recognition_cards_order = {cards_no_none[i]: recognition_cards_order[i] for i in range(len(recognition_cards_order))}
+    # recognition_cards_order = [presentation_order[i] for i in range(len(presentation_order)) if not matrix_rec_or_a[i]]
+    # recognition_cards_order = {cards_no_none[i]: recognition_cards_order[i] for i in range(len(recognition_cards_order))}
 
     #
     cards_position = {}
@@ -256,7 +263,6 @@ def write_csv_test(i_csv, matrix_pictures, days):
                     item_list.extend(['NaN', 'NaN', 'NaN', 'NaN', 'NaN'])
 
         i_csv.writerow(item_list)
-
 
 def extract_correct_answers(i_folder, i_file):
     agg = data_preprocessing.Aggregator(data_folder=i_folder, file_name=i_file)
