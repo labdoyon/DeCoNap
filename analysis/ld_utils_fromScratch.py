@@ -159,9 +159,9 @@ def recognition_extract_events(events, matrix_pictures, recognition_matrix, matr
                     else matrix_pictures[presentation_order[counter]]
                 if card != expected_card:
                     if matrix_rec_or_a[counter]:
-                        recognition_answer[last_card] = 'NaN'
+                        recognition_answer[last_card] = 'noResponse'
                     else:
-                        cards_answer[last_card] = 'NaN'
+                        cards_answer[last_card] = 'noResponse'
                     counter += 1
 
                 if matrix_rec_or_a[counter]:
@@ -238,7 +238,7 @@ def write_csv_learning(i_csv, matrix_pictures, cards_order, cards_distance_to_co
             try:
                 item_list.extend([cards_order[block_number][card], cards_distance_to_correct_card[block_number][card]])
             except KeyError:
-                item_list.extend(['NaN', 'NaN'])
+                item_list.extend(['script_failed_extract_data', 'script_failed_extract_data'])
         i_csv.writerow(item_list)
 
 
@@ -258,9 +258,11 @@ def write_csv_test(i_csv, matrix_pictures, days):
                                       day.cards_distance_to_correct_card[card]])
             except KeyError:
                 if not day.recognition:
-                    item_list.extend(['NaN', 'NaN'])
+                    item_list.extend(['script_failed_extract_data', 'script_failed_extract_data'])
                 else:
-                    item_list.extend(['NaN', 'NaN', 'NaN', 'NaN', 'NaN'])
+                    item_list.extend(['script_failed_extract_data', 'script_failed_extract_data',
+                                      'script_failed_extract_data', 'script_failed_extract_data',
+                                      'script_failed_extract_data'])
 
         i_csv.writerow(item_list)
 
